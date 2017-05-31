@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<extension type="module" version="3.4" method="upgrade" client="site">
+    <name>CedYahooWeather | Galaxiis.com</name>
+    <element>mod_cedyahooweather</element>
+
+    <author>Galaxiis</author>
+    <creationDate>2017-05-31</creationDate>
+
+    <copyright>Copyright (C) 2013-2016 galaxiis.com All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL 3.0</license>
+
+    <authorEmail>galaxiiscom@gmail.com</authorEmail>
+    <authorUrl>www.galaxiis.com</authorUrl>
+
+    <version>3.1.2</version>
+
+    <description>CedYahooWeather uses the Yahoo Weather feed data to display selected city latest weather forecasts. Get
+        your favorite city weather in a widget. Very easy
+        to customize and support multi-widget.
+    </description>
+    <files>
+        <filename module="mod_cedyahooweather">mod_cedyahooweather.php</filename>
+        <filename module="mod_cedyahooweather">helper.php</filename>
+        <filename module="mod_cedyahooweather">index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <media>
+        <folder>mod_cedyahooweather</folder>
+    </media>
+    <languages>
+        <language tag="en-GB">en-GB.mod_cedyahooweather.ini</language>
+        <language tag="en-GB">en-GB.mod_cedyahooweather.sys.ini</language>
+        <language tag="fr-FR">fr-FR.mod_cedyahooweather.ini</language>
+        <language tag="fr-FR">fr-FR.mod_cedyahooweather.sys.ini</language>
+        <language tag="de-DE">de-DE.mod_cedyahooweather.ini</language>
+        <language tag="de-DE">de-DE.mod_cedyahooweather.sys.ini</language>
+    </languages>
+
+    <config addfieldpath="libraries/galaxiis/fields">
+        <fields name="params">
+            <fieldset name="basic">
+                <field shortId="cedyahooweather"
+                       name="toolbar"
+                       type="galaxiisbar"/>
+                <field
+                        name="message"
+                        type="galaxiismessage"
+                        message="note"
+                        label="Please help us: vote, suggest and give us your opinion in the Joomla extensions directory. With this you will help us to increase our interest to modify and update the extension. Thank you very much."/>
+                <field
+                        name="downloadid"
+                        type="galaxiisdownloadid"
+                        message="download id"
+                />
+                <field
+                        name="version_msg"
+                        type="galaxiismessage"
+                        message="version"
+                        version="3.1.2"
+                        extension_name="CedYahooWeather"/>
+
+                <field name="spacer_location" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Add multiple location support' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedyahooweather-subscribe/&quot;&gt;get the Premium Version of CedYahooWeather now.&lt;/a&gt;&lt;/div&gt;"
+                       default="" description=""/>
+
+
+                <field name="woeid_location" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#efd;&quot;&gt;Get your WOEI &lt;a target=&quot;_blank&quot; href=&quot;https://www.galaxiis.com/demo/cedyahooweather/index.html&quot;&gt;Here.&lt;/a&gt;&lt;/div&gt;"
+                       default="" description=""/>
+
+                <field name="location"
+                       type="text"
+                       label="MOD_CEDYAHOOWEATHER_LOCATION"
+                       description="MOD_CEDYAHOOWEATHER_LOCATION_DESC"
+                       default="44418"
+                       showon="layout:_:default[OR]layout:_:scrollable"/>
+
+                <field name="single-location"
+                       type="text"
+                       label="WOEID Single location"
+                       description="Single WOEID Location"
+                       default="44418"
+                       showon="layout:_:purecss[OR]layout:_:minimalistic"/>
+                <field
+                        name="css-size"
+                        type="integer"
+                        default="40"
+                        first="1"
+                        last="100"
+                        step="1"
+                        label="Icon Size"
+                        description="Select icon size. Default is 40."
+                        showon="layout:_:purecss">
+                </field>
+                <field
+                        name="maximum"
+                        type="integer"
+                        default="0"
+                        first="0"
+                        last="30"
+                        step="1"
+                        label="MOD_CEDYAHOOWEATHER_REFRESH"
+                        description="MOD_CEDYAHOOWEATHER_REFRESH_DESC"
+                        showon="layout:_:scrollable">
+                </field>
+
+                <field name="unit" type="radio" default="c" label="MOD_CEDYAHOOWEATHER_UNIT"
+                       description="MOD_CEDYAHOOWEATHER_UNIT_DESC" class="btn-group">
+                    <option value="c">MOD_CEDYAHOOWEATHER_UNIT_C</option>
+                    <option value="f">MOD_CEDYAHOOWEATHER_UNIT_F</option>
+                </field>
+
+                <field name="language" type="radio" default="auto" label="MOD_CEDYAHOOWEATHER_LANGUAGE"
+                       description="MOD_CEDYAHOOWEATHER_LANGUAGE_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="'english'">MOD_CEDYAHOOWEATHER_LANGUAGE_EN</option>
+                    <option value="'portugal'">MOD_CEDYAHOOWEATHER_LANGUAGE_PT</option>
+                    <option value="'humgarian'">MOD_CEDYAHOOWEATHER_LANGUAGE_HU</option>
+                    <option value="'german'">MOD_CEDYAHOOWEATHER_LANGUAGE_DE</option>
+                    <option value="'french'">MOD_CEDYAHOOWEATHER_LANGUAGE_FR</option>
+                </field>
+
+                <field name="image" type="radio" default="1" label="MOD_CEDYAHOOWEATHER_IMAGE"
+                       description="MOD_CEDYAHOOWEATHER_IMAGE_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="country" type="radio" default="0" label="MOD_CEDYAHOOWEATHER_COUNTRY"
+                       description="MOD_CEDYAHOOWEATHER_COUNTRY_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="highlow" type="radio" default="1" label="MOD_CEDYAHOOWEATHER_HIGHLOW"
+                       description="MOD_CEDYAHOOWEATHER_HIGHLOW_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="wind" type="radio" default="1" label="MOD_CEDYAHOOWEATHER_WIND"
+                       description="MOD_CEDYAHOOWEATHER_WIND_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="humidity" type="radio" default="0" label="MOD_CEDYAHOOWEATHER_HUMIDITY"
+                       description="MOD_CEDYAHOOWEATHER_HUMIDITY_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="visibility" type="radio" default="0" label="MOD_CEDYAHOOWEATHER_VISIBILITY"
+                       description="MOD_CEDYAHOOWEATHER_VISIBILITY_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="sunrise" type="radio" default="0" label="MOD_CEDYAHOOWEATHER_SUNRISE"
+                       description="MOD_CEDYAHOOWEATHER_SUNRISE_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="sunset" type="radio" default="0" label="MOD_CEDYAHOOWEATHER_SUNSET"
+                       description="MOD_CEDYAHOOWEATHER_SUNSET_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="spacer_forecast" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Add Forecast display' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedyahooweather-subscribe/&quot;&gt;get the Premium Version of CedYahooWeather now.&lt;/a&gt;&lt;/div&gt;"
+                       default="" description=""/>
+                <field name="showerror" type="radio" default="1" label="MOD_CEDYAHOOWEATHER_SHOWERROR"
+                       description="MOD_CEDYAHOOWEATHER_SHOWERROR_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="linktarget" type="radio" default="_blank" label="MOD_CEDYAHOOWEATHER_LINKTARGET"
+                       description="MOD_CEDYAHOOWEATHER_LINKTARGET_DESC" class="btn-group"
+                       showon="layout:_:default[OR]layout:_:scrollable">
+                    <option value="_self">MOD_CEDYAHOOWEATHER_LINKTARGET1</option>
+                    <option value="_blank">MOD_CEDYAHOOWEATHER_LINKTARGET2</option>
+                    <option value="_top">MOD_CEDYAHOOWEATHER_LINKTARGET3</option>
+                </field>
+            </fieldset>
+
+            <fieldset name="scrollable" label="MOD_CEDYAHOOWEATHER_ANIMATIONS_TAB">
+                <field name="spacer_animation" type="spacer"
+                       label="&lt;div style=&quot;font-weight:bold;font-size:11px;color:#000;padding:8px;margin:0;background:#ffd;&quot;&gt;'Add animation support' &lt;a target=&quot;_blank&quot; href=&quot;http://www.galaxiis.com/cedyahooweather-subscribe/&quot;&gt;get the Premium Version of CedYahooWeather now.&lt;/a&gt;&lt;/div&gt;"
+                       default="" description=""/>
+                <field name="scrollable" type="radio" default="true" label="MOD_CEDYAHOOWEATHER_SCROLLABLE"
+                       description="MOD_CEDYAHOOWEATHER_SCROLLABLE_DESC" class="btn-group" showon="layout:_:scrollable">
+                    <option value="false">JNO</option>
+                    <option value="true">JYES</option>
+                </field>
+                <!--<field name="vertical" type="radio" default="true" label="MOD_CEDYAHOOWEATHER_VERTICAL"-->
+                <!--description="MOD_CEDYAHOOWEATHER_VERTICAL_DESC" class="btn-group">-->
+                <!--<option value="false">JNO</option>-->
+                <!--<option value="true">JYES</option>-->
+                <!--</field>-->
+                <field name="circular" type="radio" default="true" label="MOD_CEDYAHOOWEATHER_CIRCULAR"
+                       description="MOD_CEDYAHOOWEATHER_CIRCULAR_DESC" class="btn-group" showon="layout:_:scrollable">
+                    <option value="false">JNO</option>
+                    <option value="true">JYES</option>
+                </field>
+                <field
+                        name="interval"
+                        type="integer"
+                        default="3"
+                        first="1"
+                        last="30"
+                        step="1"
+                        label="MOD_CEDYAHOOWEATHER_INTERVAL"
+                        description="MOD_CEDYAHOOWEATHER_INTERVAL_DESC">
+                </field>
+            </fieldset>
+
+            <fieldset name="advanced">
+                <field
+                        name="layout"
+                        type="modulelayout"
+                        label="JFIELD_ALT_LAYOUT_LABEL"
+                        description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+                />
+
+                <field
+                        name="moduleclass_sfx"
+                        type="textarea"
+                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                        description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+                        rows="3"
+                />
+
+                <field
+                        name="cache"
+                        type="list"
+                        label="COM_MODULES_FIELD_CACHING_LABEL"
+                        description="COM_MODULES_FIELD_CACHING_DESC"
+                        default="1"
+                >
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+
+                <field
+                        name="cache_time"
+                        type="text"
+                        label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+                        description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+                        default="900"
+                />
+
+                <field
+                        name="cachemode"
+                        type="hidden"
+                        default="static"
+                >
+                    <option value="static"></option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
+

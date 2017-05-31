@@ -16,13 +16,8 @@
 // Don't allow direct access to the module.
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.application.component.controller');
-require_once(JPATH_COMPONENT . '/controller.php');
+require_once(dirname(__FILE__) . '/helper.php');
 
-$document = JFactory::getDocument();
-$document->addStyleSheet(JURI::root() . '/media/com_cedyahooweather/css/cedyahooweather.css');
 
-$controller = JControllerLegacy::getInstance('CedYahooWeather');
-$task = JFactory::getApplication()->input->get('task', 'default', 'string');
-$controller->execute($task);
-$controller->redirect();
+
+require(JModuleHelper::getLayoutPath('mod_cedyahooweather', $params->get('layout', 'default')));
